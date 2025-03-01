@@ -45,4 +45,9 @@ function findLongestWords(sentence) {
   return longestWords;
 }
 
+let sentence = 'Я учусь программировать на JavaScript';
+console.log(findLongestWords(sentence));
+console.log(findLongestWords('')); // Возвращает пустой массив
+console.log(findLongestWords(123));
+
 export { isPalindrom, findLongestWords };
