@@ -1,10 +1,20 @@
+const isValidInput = (sentence) => typeof sentence === 'string';
+const isEmptyString = (sentence) => sentence.trim() === '';
+
 /*
  1. isPalindrom
  Написать функцию, которая принимает на вход слово и проверяет, является ли это слово палиндромом
 */
 
 function isPalindrom(word) {
-  // Ваш код
+  if (!isValidInput(word)) {
+    return false;
+  }
+  word = word.toLowerCase();
+
+  const reversedWord = word.split('').reverse().join('');
+
+  return word === reversedWord;
 }
 
 /*
@@ -15,7 +25,29 @@ function isPalindrom(word) {
 */
 
 function findLongestWords(sentence) {
-  // Ваш код
+  if (!isValidInput(sentence) || isEmptyString(sentence)) {
+    return [];
+  }
+
+  let words = sentence.split(' ');
+  let maxLength = 0;
+  let longestWords = [];
+
+  for (let word of words) {
+    if (word.length > maxLength) {
+      maxLength = word.length;
+      longestWords = [word];
+    } else if (word.length === maxLength) {
+      longestWords.push(word);
+    }
+  }
+
+  return longestWords;
 }
+
+let sentence = 'Я учусь программировать на JavaScript';
+console.log(findLongestWords(sentence));
+console.log(findLongestWords('')); // Возвращает пустой массив
+console.log(findLongestWords(123));
 
 export { isPalindrom, findLongestWords };
