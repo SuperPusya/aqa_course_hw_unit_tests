@@ -14,23 +14,40 @@ const characters = [
 ];
 
 function addCharacter(character) {
-  // Ваш код
+  if (typeof character.name !== 'string' || typeof character.age !== 'number') {
+    throw new Error('Имя должно быть строкой, а возраст — числом.');
+  }
+  characters.push(character);
 }
 
 function getCharacter(name) {
-  // Ваш код
+  const character = characters.find((el) => el.name === name);
+  return character ? character : undefined;
 }
 
 function getCharactersByAge(minAge) {
-  // Ваш код
+  if (typeof minAge !== 'number') {
+    throw new Error('Возраст должен быть числом.');
+  }
+  return characters.filter((el) => el.age >= minAge);
 }
 
 function updateCharacter(name, newCharacter) {
-  // Ваш код
+  const character = getCharacter(name);
+  if (character) {
+    Object.assign(character, newCharacter);
+  } else {
+    throw new Error(`Персонаж с именем '${name}' не найден.`);
+  }
 }
 
 function removeCharacter(name) {
-  // Ваш код
+  const index = characters.findIndex((el) => el.name === name);
+  if (index !== -1) {
+    characters.splice(index, 1);
+  } else {
+    throw new Error(`Персонаж с именем '${name}' не найден.`);
+  }
 }
 
 export { characters, addCharacter, updateCharacter, getCharacter, getCharactersByAge, removeCharacter };
