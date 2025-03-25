@@ -30,11 +30,11 @@ prm2.then((result) => console.log(result));
 
 //3
 const prm3 = new Promise((resolve, reject) => {
-  resolve(`Promise passed`);
+  //   resolve(`Promise passed`);
   reject(`Promise failed`);
 });
 
-prm3.then((result) => console.log(result)).catch((reject) => console.log(reject));
+prm3.catch((reject) => console.log(reject));
 
 //4
 function promiseNumber(number) {
